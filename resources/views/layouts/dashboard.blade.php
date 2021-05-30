@@ -15,6 +15,8 @@
    {{-- <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}"> --}}
    <!-- icon flag -->
    <link rel="stylesheet" href="{{ asset('vendor/flag-icon-css/css/flag-icon.min.css')}}">
+   {{-- Css External --}}
+   @stack('css-external')
 </head>
 
 <body>
@@ -55,6 +57,9 @@
    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
    <!-- my-dashboard -->
    <script src="{{ asset('vendor/my-dashboard/js/dashboard.js')}}"></script>
+   {{-- javascript external --}}
+   @stack('javascript-external')
+   @stack('javascript-internal')
 </body>
 
 </html>

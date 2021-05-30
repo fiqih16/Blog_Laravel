@@ -1,4 +1,4 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
     <a class="navbar-brand" href="#">
        <!-- show app name -->
        {{ config('app.name') }}
