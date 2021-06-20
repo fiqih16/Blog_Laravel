@@ -50,15 +50,36 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        //  proses validasi data kategory
         $validator = Validator::make(
             $request->all(),[
             'title' => 'required|string|max:60',
             'slug' => 'required|string|unique:categories,slug',
             'thumbnail' => 'required',
             'description' => 'required|string|max:250',
-        ]);
+            ],
+            [],
+            $this->attributes()
+        );
 
         if($validator->fails()){
+            if($request->has('parent_category')){
+                $request['parent_category'] = Category::select('id', 'title')->find($request->parent_category);
+            }
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }
+
+        // proses insert data kategory
+        try {
+            Category::create([
+                'title' => $request->title,
+                'slug' => $request->slug,
+                'thumbnail' => parse_url($request->thumbnail)['path'],
+                'description' => $request->description,
+                'parent_id'=> $request->parent_category
+            ]);
+            return redirect()->route('categories.index');
+        } catch (\Throwable $th) {
             if($request->has('parent_category')){
                 $request['parent_category'] = Category::select('id', 'title')->find($request->parent_category);
             }
@@ -113,4 +134,15 @@ class CategoryController extends Controller
     {
         //
     }
+
+    private function attributes()
+    {
+        return [
+            'title' => trans('categories.form_control.input.title.attribute'),
+            'slug' => trans('categories.form_control.input.slug.attribute'),
+            'thumbnail' => trans('categories.form_control.input.thumbnail.attribute'),
+            'description' => trans('categories.form_control.textarea.description.attribute'),
+        ];
+    }
+
 }

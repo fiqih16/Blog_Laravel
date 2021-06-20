@@ -20,7 +20,7 @@
                    <label for="input_category_title" class="font-weight-bold">
                       {{ trans('categories.form_control.input.title.label') }}
                    </label>
-                   <input id="input_category_title" value="{{ old('title')}}" name="title" type="text" class="form-control @error('title') is-invalid @enderror"
+                   <input id="input_category_title" value="{{ old('title') }}" name="title" type="text" class="form-control @error('title') is-invalid @enderror"
                         placeholder="{{ trans('categories.form_control.input.title.placeholder') }}"/>
                     @error('title')
                         <span class="invalid-feedback" role="alert">
@@ -33,7 +33,7 @@
                    <label for="input_category_slug" class="font-weight-bold">
                     {{ trans('categories.form_control.input.slug.label') }}
                    </label>
-                   <input id="input_category_slug" value="{{ old('slug')}}" name="slug" type="text" class="form-control @error('slug') is-invalid @enderror"
+                   <input id="input_category_slug" value="{{ old('slug') }}" name="slug" type="text" class="form-control @error('slug') is-invalid @enderror"
                         placeholder="{{ trans('categories.form_control.input.slug.placeholder') }}" readonly />
                         @error('slug')
                             <span class="invalid-feedback" role="alert">
