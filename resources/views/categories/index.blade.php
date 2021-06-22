@@ -50,3 +50,31 @@
  </div>
 
 @endsection
+
+@push('javascript-internal')
+    <script>
+        $(document).ready(function(){
+            // event :delete category
+            $("form[role='alert']").submit(function(event) {
+                event.preventDefault();
+
+                Swal.fire({
+                title: $(this).attr('alert-title'),
+                text: $(this).attr('alert-text'),
+                icon: 'warning',
+                allowOutsideClick: false,
+                showCancelButton: true,
+                cancelButtonText: $(this).attr('alert-btn-cancel'),
+                reverseButtons: true,
+                confirmButtonText: $(this).attr('alert-btn-yes'),
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    event.target.submit();
+                }
+                });
+
+            });
+        });
+
+    </script>
+@endpush
