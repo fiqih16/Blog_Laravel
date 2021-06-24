@@ -26,7 +26,8 @@
              </div>
              {{ trans('dashboard.link.categories') }}
           </a>
-          <a class="nav-link" href="#">
+          {{-- link Tags --}}
+          <a class="nav-link {{ set_active(['tags.index']) }}" href="{{ route('tags.index')}}">
              <div class="sb-nav-link-icon">
                 <i class="fas fa-tags"></i>
              </div>
