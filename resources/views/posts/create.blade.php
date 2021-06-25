@@ -73,12 +73,9 @@
                             </label>
                             <div class="form-control overflow-auto" style="height: 886px">
                                 <!-- List category -->
-                                <ul class="pl-1 my-1" style="list-style: none;">
-                                <li class="form-group form-check my-1">
-                                    <input class="form-check-input" type="checkbox" name="category[]">
-                                    <label class="form-check-label">Check me out</label>
-                                </li>
-                                </ul>
+                                    @include('posts._category-list',[
+                                        'categories' => $categories
+                                    ])
                                 <!-- List category -->
                             </div>
                         </div>
@@ -127,3 +124,31 @@
         </div>
     </div>
 @endsection
+
+@push('javascript-external')
+    {{-- file manager (button) --}}
+    <script src="{{ asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
+@endpush
+
+@push('javascript-internal')
+    <script>
+        $(document).ready(function(){
+            // Event : Input Slug
+            $("#input_post_title").change(function (event) {
+            $("#input_post_slug").val(
+                event.target.value
+                .trim()
+                .toLowerCase()
+                .replace(/[^a-z\d-]/gi, "-")
+                .replace(/-+/g, "-")
+                .replace(/^-|-$/g, "")
+            );
+            });
+
+            // Event : Input Thumbnail
+            $('#button_post_thumbnail').filemanager('image');
+
+        });
+
+    </script>
+@endpush
