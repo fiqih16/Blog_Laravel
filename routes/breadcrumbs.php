@@ -68,6 +68,18 @@ Breadcrumbs::for('edit_tag', function ($trail, $tag) {
     $trail->push($tag->title, route('tags.edit', ['tag' => $tag]));
 });
 
+// Dashboard > Post
+Breadcrumbs::for('posts', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Posts', route('posts.index'));
+});
+
+// Dashboard > Post > Add
+Breadcrumbs::for('add_post', function ($trail) {
+    $trail->parent('posts');
+    $trail->push('Add', route('posts.create'));
+});
+
 // Home > About
 // Breadcrumbs::for('about', function ($trail) {
 //     $trail->parent('home');

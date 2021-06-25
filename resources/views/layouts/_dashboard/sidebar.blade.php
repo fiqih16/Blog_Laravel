@@ -12,8 +12,8 @@
           <div class="sb-sidenav-menu-heading">
               {{ trans('dashboard.menu.master') }}
           </div>
-
-          <a class="nav-link" href="#">
+          {{-- link Posts --}}
+          <a class="nav-link {{ set_active(['posts.index', 'posts.create']) }}" href="{{ route('posts.index') }}">
              <div class="sb-nav-link-icon">
                 <i class="far fa-newspaper"></i>
              </div>
