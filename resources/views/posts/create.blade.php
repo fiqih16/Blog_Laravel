@@ -128,6 +128,9 @@
 @push('javascript-external')
     {{-- file manager (button) --}}
     <script src="{{ asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
+    {{-- TinyMCE5 --}}
+    <script src="{{ asset('vendor/tinymce5/jquery.tinymce.min.js')}}"></script>
+    <script src="{{ asset('vendor/tinymce5/tinymce.min.js')}}"></script>
 @endpush
 
 @push('javascript-internal')
@@ -147,7 +150,20 @@
 
             // Event : Input Thumbnail
             $('#button_post_thumbnail').filemanager('image');
-
+            // Texteditor Content (TinyMCE5)
+            $("#input_post_content").tinymce({
+                relative_urls: false,
+                language: "en",
+                plugins: [
+                    "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                    "searchreplace wordcount visualblocks visualchars code fullscreen",
+                    "insertdatetime media nonbreaking save table directionality",
+                    "emoticons template paste textpattern",
+                ],
+                toolbar1: "fullscreen preview",
+                toolbar2:
+                    "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+                });
         });
 
     </script>
