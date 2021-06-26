@@ -16,7 +16,7 @@
           <div class="card-body">
              <!-- thumbnail:true -->
              @if (file_exists(public_path($category->thumbnail)))
-                <div class="category-thumbnail" style="background-image: url('{{ asset($category->thumbnail) }}');">
+                <div class="category-tumbnail" style="background-image: url('{{ asset($category->thumbnail) }}');">
                 </div>
              @else
                 <!-- thumbnail:false -->
