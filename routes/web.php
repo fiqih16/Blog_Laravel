@@ -42,6 +42,7 @@ Route::group(['prefix' => 'dashboard','middleware' => ['web','auth']],function()
     Route::get('/categories/select',[\App\Http\Controllers\CategoryController::class, 'select'])->name('categories.select');
     Route::resource('/categories', \App\Http\Controllers\CategoryController::class);
     //tagsController
+    Route::get('/tags/select',[\App\Http\Controllers\TagController::class, 'select'])->name('tags.select');
     Route::resource('/tags', \App\Http\Controllers\TagController::class)->except(['show']);
     // PostController
     Route::resource('/posts', \App\Http\Controllers\PostController::class);
