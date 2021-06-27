@@ -7,6 +7,9 @@ use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PostController extends Controller
 {
@@ -64,6 +67,39 @@ class PostController extends Controller
             }
             return redirect()->back()->withInput($request->all())->withErrors($validator);
         }
+
+        DB::beginTransaction();
+        try {
+            $post = Post::create([
+                "title" => $request->title,
+                "slug" => $request->slug,
+                "thumbnail" => parse_url($request->thumbnail)['path'],
+                "description" => $request->description,
+                "content" => $request->content,
+                "status" => $request->status,
+                "user_id" => Auth::user()->id,
+            ]);
+            $post->tags()->attach($request->tag);
+            $post->categories()->attach($request->category);
+
+            Alert::success(
+                trans('posts.alert.create.title'),
+                trans('posts.alert.create.message.success'),
+            );
+            return redirect()->route('posts.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Alert::error(
+                trans('posts.alert.create.title'),
+                trans('posts.alert.create.message.error', ['error' => $th->getMessage()]),
+            );
+            if($request['tag']) {
+                $request['tag'] = Tag::select('id', 'title')->whereIn('id',$request->tag)->get();
+            }
+            return redirect()->back()->withInput($request->all());
+        }finally{
+            DB::commit();
+        }
     }
 
     /**
@@ -74,7 +110,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $categories = $post->categories;
+        $tags = $post->tags;
+        return view('posts.detail', compact('post', 'categories', 'tags'));
     }
 
     /**
