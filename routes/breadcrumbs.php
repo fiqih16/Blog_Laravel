@@ -100,6 +100,19 @@ Breadcrumbs::for('file_manager', function ($trail) {
     $trail->push('File manager', route('filemanager.index'));
 });
 
+// Dashboard > Roles
+Breadcrumbs::for('roles', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push("Roles", route('posts.index'));
+});
+
+// Dashboard > Roles > Detail > [name]
+Breadcrumbs::for('detail_role', function ($trail,$role) {
+    $trail->parent('roles');
+    $trail->push('Detail', route('roles.show',['role' => $role]));
+    $trail->push($role->name, route('roles.show',['role' => $role]));
+});
+
 // Home > About
 // Breadcrumbs::for('about', function ($trail) {
 //     $trail->parent('home');
