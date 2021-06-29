@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RoleController extends Controller
 {
@@ -26,7 +29,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('roles.create',[
+            'authorities' => config('permission.authorities')
+        ]);
     }
 
     /**
@@ -37,7 +42,40 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => "required|string|max:50|unique:roles,name",
+                'permissions' => "required"
+            ],
+            [],
+            $this->attributes()
+        );
+
+        if($validator->fails()){
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }
+
+        DB::beginTransaction();
+        try {
+            $role = Role::create(['name' => $request->name]);
+            $role->givePermissionTo($request->permissions);
+            Alert::success(
+                trans('roles.alert.create.title'),
+                trans('roles.alert.create.message.success'),
+            );
+            return redirect()->route('roles.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Alert::error(
+                trans('roles.alert.create.title'),
+                trans('roles.alert.create.message.error',['error' => $th->getMessage()]),
+            );
+            return redirect()->back()->withInput($request->all());
+            //throw $th;
+        }finally {
+            DB::commit();
+        }
     }
 
     /**
@@ -87,5 +125,13 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         //
+    }
+
+    private function attributes()
+    {
+        return [
+            'name' => trans('roles.form_control.input.name.attribute'),
+            'permissions' => trans('roles.form_control.input.permission.attribute')
+        ];
     }
 }

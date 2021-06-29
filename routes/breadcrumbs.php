@@ -106,6 +106,12 @@ Breadcrumbs::for('roles', function ($trail) {
     $trail->push("Roles", route('posts.index'));
 });
 
+// Dashboard > Roles > Add
+Breadcrumbs::for('add_role', function ($trail) {
+    $trail->parent('roles');
+    $trail->push("Add", route('roles.create'));
+});
+
 // Dashboard > Roles > Detail > [name]
 Breadcrumbs::for('detail_role', function ($trail,$role) {
     $trail->parent('roles');
