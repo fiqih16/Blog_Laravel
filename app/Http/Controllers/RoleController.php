@@ -117,7 +117,41 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => "required|string|max:50|unique:roles,name," . $role->id,
+                'permissions' => "required"
+            ],
+            [],
+            $this->attributes()
+        );
+
+        if($validator->fails()){
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }
+
+        DB::beginTransaction();
+        try {
+            $role->name = $request->name;
+            $role->syncPermissions($request->permissions);
+            $role->save();
+            Alert::success(
+                trans('roles.alert.update.title'),
+                trans('roles.alert.update.message.success'),
+            );
+            return redirect()->route('roles.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Alert::error(
+                trans('roles.alert.update.title'),
+                trans('roles.alert.update.message.error',['error' => $th->getMessage()]),
+            );
+            return redirect()->back()->withInput($request->all());
+            //throw $th;
+        }finally {
+            DB::commit();
+        }
     }
 
     /**
@@ -128,7 +162,24 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $role->revokePermissionTo($role->permissions->pluck('name')->toArray());
+            $role->delete();
+            Alert::success(
+                trans('roles.alert.delete.title'),
+                trans('roles.alert.delete.message.success'),
+            );
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Alert::error(
+                trans('roles.alert.delete.title'),
+                trans('roles.alert.delete.message.error',['error' => $th->getMessage()]),
+            );
+        }finally {
+            DB::commit();
+        }
+        return redirect()->route('roles.index');
     }
 
     private function attributes()
