@@ -56,4 +56,6 @@ Route::group(['prefix' => 'dashboard','middleware' => ['web','auth']],function()
     });
     // RoleController
     Route::resource('/roles', \App\Http\Controllers\RoleController::class);
+    // UserController
+    Route::resource('/users', \App\Http\Controllers\UserController::class);
 });
