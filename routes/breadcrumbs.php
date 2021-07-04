@@ -132,6 +132,12 @@ Breadcrumbs::for('users', function ($trail) {
     $trail->push("Users", route('users.index'));
 });
 
+// Dashboard > Users > Add
+Breadcrumbs::for('add_user', function ($trail) {
+    $trail->parent('users');
+    $trail->push("Add", route('users.create'));
+});
+
 // Home > About
 // Breadcrumbs::for('about', function ($trail) {
 //     $trail->parent('home');

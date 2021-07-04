@@ -38,7 +38,7 @@
             {{ trans('dashboard.menu.user_permission') }}
           </div>
           {{-- Link:Users --}}
-          <a class="nav-link {{ set_active(['users.index'])}}" href="{{ route('users.index')}}">
+          <a class="nav-link {{ set_active(['users.index', 'users.create'])}}" href="{{ route('users.index')}}">
              <div class="sb-nav-link-icon">
                 <i class="fas fa-user"></i>
              </div>
