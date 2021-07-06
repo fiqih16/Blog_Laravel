@@ -31,7 +31,6 @@
                     <select id="select_user_role" name="role"
                     data-placeholder="{{ trans('users.form_control.select.role.placeholder')}}"
                         class="custom-select w-100">
-                        <option value="" selected="selected">Role</option>
                     </select>
                     <!-- error message -->
                     </div>
@@ -79,3 +78,41 @@
         </div>
     </div>
 @endsection
+
+@push('css-external')
+<link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.min.css')}}">
+<link rel="stylesheet" href="{{ asset('vendor/select2/css/select2-bootstrap4.min.css')}}">
+@endpush
+
+@push('javascript-external')
+<script src="{{ asset('vendor/select2/js/select2.min.js')}}"></script>
+<script src="{{ asset('vendor/select2/js/i18n/' .app()->getLocale() . '.js')}}"></script>
+@endpush
+
+@push('javascript-internal')
+    <script>
+        $(function() {
+            // select2 select_user_role
+            $('#select_user_role').select2({
+                theme: 'bootstrap4',
+                language: "{{ app()->getLocale() }}",
+                allowClear: true,
+                ajax: {
+                    url: "{{ route('roles.select') }}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(item) {
+                            return {
+                                text: item.name,
+                                id: item.id
+                            }
+                            })
+                        };
+                    }
+                }
+            });
+        });
+    </script>
+@endpush
