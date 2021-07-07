@@ -13,15 +13,23 @@
         <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <form action="" method="POST">
+                <form action="{{ route('users.store')}}" method="POST">
+                    @csrf
                     <!-- name -->
                     <div class="form-group">
                     <label for="input_user_name" class="font-weight-bold">
                         {{ trans('users.form_control.input.name.label')}}
                     </label>
-                    <input id="input_user_name" value="" name="name" type="text" class="form-control"
-                     placeholder="{{ trans('users.form_control.input.name.placeholder')}}" />
-                    <!-- error message -->
+                    <input id="input_user_name" value="" name="name" type="text"
+                        class="form-control @error('name') is-invalid @enderror"
+                        placeholder="{{ trans('users.form_control.input.name.placeholder')}}" />
+                        @error('name')
+                            <span class="invalid-feedback">
+                                <strong>
+                                    {{ $message }}
+                                </strong>
+                            </span>
+                        @enderror
                     </div>
                     <!-- role -->
                     <div class="form-group">
@@ -29,30 +37,50 @@
                         {{ trans('users.form_control.select.role.label')}}
                     </label>
                     <select id="select_user_role" name="role"
-                    data-placeholder="{{ trans('users.form_control.select.role.placeholder')}}"
-                        class="custom-select w-100">
+                        data-placeholder="{{ trans('users.form_control.select.role.placeholder')}}"
+                        class="custom-select w-55 @error('role') is-invalid @enderror">
                     </select>
-                    <!-- error message -->
+                        @error('role')
+                            <span class="invalid-feedback">
+                                <strong>
+                                    {{ $message }}
+                                </strong>
+                            </span>
+                        @enderror
                     </div>
                     <!-- email -->
                     <div class="form-group">
                     <label for="input_user_email" class="font-weight-bold">
                         {{ trans('users.form_control.input.email.label')}}
                     </label>
-                    <input id="input_user_email" value="" name="email" type="email" class="form-control"
-                    placeholder="{{ trans('users.form_control.input.email.placeholder')}}"
+                    <input id="input_user_email" value="" name="email" type="email"
+                        class="form-control @error('email') is-invalid @enderror"
+                        placeholder="{{ trans('users.form_control.input.email.placeholder')}}"
                         autocomplete="email" />
-                    <!-- error message -->
+                        @error('email')
+                            <span class="invalid-feedback">
+                                <strong>
+                                    {{ $message }}
+                                </strong>
+                            </span>
+                        @enderror
                     </div>
                     <!-- password -->
                     <div class="form-group">
                     <label for="input_user_password" class="font-weight-bold">
                         {{ trans('users.form_control.input.password.label')}}
                     </label>
-                    <input id="input_user_password" name="password" type="password" class="form-control"
-                    placeholder="{{ trans('users.form_control.input.password.placeholder')}}"
+                    <input id="input_user_password" name="password" type="password"
+                        class="form-control @error('password') is-invalid @enderror"
+                        placeholder="{{ trans('users.form_control.input.password.placeholder')}}"
                         autocomplete="new-password" />
-                    <!-- error message -->
+                        @error('password')
+                            <span class="invalid-feedback">
+                                <strong>
+                                    {{ $message }}
+                                </strong>
+                            </span>
+                        @enderror
                     </div>
                     <!-- password_confirmation -->
                     <div class="form-group">

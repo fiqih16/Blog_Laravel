@@ -42,8 +42,8 @@
                         <div class="card my-1">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-2">
-                                    <i class="fas fa-id-badge fa-5x"></i>
+                                <div class="col-md-2 py-2">
+                                    <i class="fas fa-id-badge fa-3x"></i>
                                 </div>
                                 <div class="col-md-10">
                                     <table>
