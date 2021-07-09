@@ -13,7 +13,8 @@
         <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('users.store')}}" method="POST">
+                <form action="{{ route('users.update',['user' => $user])}}" method="POST">
+                    @method('PUT')
                     @csrf
                     <!-- name -->
                     <div class="form-group">
@@ -59,7 +60,7 @@
                         {{ trans('users.button.back.value')}}
                     </a>
                     <button type="submit" class="btn btn-primary float-right px-4">
-                        {{ trans('users.button.save.value')}}
+                        {{ trans('users.button.edit.value')}}
                     </button>
                     </div>
                 </form>
