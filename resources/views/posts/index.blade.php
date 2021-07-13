@@ -51,10 +51,14 @@
                     </form>
                     </div>
                     <div class="col-md-6">
-                    <a href="{{ route('posts.create') }}" class="btn btn-primary float-right" role="button">
-                        {{ trans('posts.button.create.value')}}
-                        <i class="fas fa-plus-square"></i>
-                    </a>
+                        {{-- Add post --}}
+                        @can('post_create')
+                        <a href="{{ route('posts.create') }}" class="btn btn-primary float-right" role="button">
+                            {{ trans('posts.button.create.value')}}
+                            <i class="fas fa-plus-square"></i>
+                        </a>
+                        @endcan
+
                     </div>
                 </div>
             </div>
@@ -72,14 +76,19 @@
                             </p>
                             <div class="float-right">
                                 <!-- detail -->
+                                @can('post_detail')
                                 <a href="{{ route('posts.show', ['post' => $post ]) }}" class="btn btn-sm btn-primary" role="button">
                                     <i class="fas fa-eye"></i>
                                 </a>
+                                @endcan
                                 <!-- edit -->
+                                @can('post_update')
                                 <a href="{{ route('posts.edit',['post' => $post ]) }}" class="btn btn-sm btn-info" role="button">
                                     <i class="fas fa-edit"></i>
                                 </a>
+                                @endcan
                                 <!-- delete -->
+                                @can('post_delete')
                                 <form class="d-inline" role="alert"
                                     alert-text="{{ trans('posts.alert.delete.message.confirm',['title' => $post->title]) }}"
                                     action="{{ route('posts.destroy', ['post' => $post])}}" method="POST">
@@ -89,6 +98,7 @@
                                             <i class="fas fa-trash"></i>
                                         </button>
                                 </form>
+                                @endcan
                             </div>
                             </div>
                         </div>
