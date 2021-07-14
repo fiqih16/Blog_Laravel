@@ -51,12 +51,14 @@
              {{ trans('dashboard.link.users') }}
           </a>
           {{-- Link:Roles --}}
-          <a class="nav-link {{ set_active(['roles.index','roles.show','roles.edit']) }}" href="{{ route('roles.index')}}">
-             <div class="sb-nav-link-icon">
+          @can('manage_roles')
+            <a class="nav-link {{ set_active(['roles.index','roles.show','roles.edit']) }}" href="{{ route('roles.index')}}">
+                <div class="sb-nav-link-icon">
                 <i class="fas fa-user-shield"></i>
-             </div>
-             {{ trans('dashboard.link.roles') }}
-          </a>
+                </div>
+                {{ trans('dashboard.link.roles') }}
+            </a>
+          @endcan
           {{-- menu setting --}}
           <div class="sb-sidenav-menu-heading">
             {{ trans('dashboard.menu.setting') }}
