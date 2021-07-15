@@ -54,15 +54,15 @@ class AuthServiceProvider extends ServiceProvider
             ]);
         });
 
-        // Gate::define('manage_users',function($user){
-        //     return $user->hasAnyPermission([
-        //         'user_show',
-        //         'user_create',
-        //         'post_update',
-        //         'user_detail',
-        //         'user_delete'
-        //     ]);
-        // });
+        Gate::define('manage_users',function($user){
+            return $user->hasAnyPermission([
+                'user_show',
+                'user_create',
+                'user_update',
+                'user_detail',
+                'user_delete'
+            ]);
+        });
 
         Gate::define('manage_roles',function($user){
             return $user->hasAnyPermission([
