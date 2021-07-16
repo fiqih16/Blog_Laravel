@@ -20,9 +20,7 @@ use Illuminate\Support\Facades\Auth;
 // cara 2 (Route Multi bahasa)
 Route::get('/localization/{language}', [\App\Http\Controllers\LocalizationController::class, 'switch'])->name('localization.switch');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[\App\Http\Controllers\BlogController::class, 'home'])->name('blog.home');
 
 Route::get('/dashboard', function() {
     return view('layouts.dashboard');
