@@ -11,6 +11,12 @@ Breadcrumbs::for('blog_home', function ($trail) {
     $trail->push('Home', route('blog.home'));
 });
 
+// Blog > Categories
+Breadcrumbs::for('blog_categories', function ($trail) {
+    $trail->parent('blog');
+    $trail->push('Categories', route('blog.categories'));
+});
+
 // ============= DASHBOARD ============
 // Dashboard
 Breadcrumbs::for('dashboard', function ($trail) {
