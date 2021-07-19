@@ -1,7 +1,17 @@
 <?php
 
+// ============= BLOG ===========
+Breadcrumbs::for('blog', function ($trail) {
+    $trail->push('Blog', route('blog.home'));
+});
 
+// Blog > Home
+Breadcrumbs::for('blog_home', function ($trail) {
+    $trail->parent('blog');
+    $trail->push('Home', route('blog.home'));
+});
 
+// ============= DASHBOARD ============
 // Dashboard
 Breadcrumbs::for('dashboard', function ($trail) {
     $trail->push('Dashboard', route('dashboard.index'));
@@ -144,27 +154,3 @@ Breadcrumbs::for('edit_user', function ($trail,$user) {
     $trail->push('Edit', route('users.edit',['user' => $user]));
     $trail->push($user->name, route('users.edit',['user' => $user]));
 });
-
-// Home > About
-// Breadcrumbs::for('about', function ($trail) {
-//     $trail->parent('home');
-//     $trail->push('About', route('about'));
-// });
-
-// Home > Blog
-// Breadcrumbs::for('blog', function ($trail) {
-//     $trail->parent('home');
-//     $trail->push('Blog', route('blog'));
-// });
-
-// Home > Blog > [Category]
-// Breadcrumbs::for('category', function ($trail, $category) {
-//     $trail->parent('blog');
-//     $trail->push($category->title, route('category', $category->id));
-// });
-
-// Home > Blog > [Category] > [Post]
-// Breadcrumbs::for('post', function ($trail, $post) {
-//     $trail->parent('category', $post->category);
-//     $trail->push($post->title, route('post', $post->id));
-// });
