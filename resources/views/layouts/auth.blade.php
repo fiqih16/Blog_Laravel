@@ -10,7 +10,7 @@
    <link rel="stylesheet" href="{{ asset('vendor/my-auth/css/auth.css')}}">
 </head>
 
-<body class="bg-primary">
+<body class="bg-info">
    <div id="layoutAuthentication">
       <div id="layoutAuthentication_content">
          <main>
