@@ -23,6 +23,13 @@ Breadcrumbs::for('blog_tags', function ($trail) {
     $trail->push('Tags', route('blog.tags'));
 });
 
+// Blog > Search
+Breadcrumbs::for('blog_search', function ($trail,$keyword) {
+    $trail->parent('blog');
+    $trail->push('Search', route('blog.search'));
+    $trail->push($keyword, route('blog.search'));
+});
+
 // ============= DASHBOARD ============
 // Dashboard
 Breadcrumbs::for('dashboard', function ($trail) {
