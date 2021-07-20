@@ -63,7 +63,7 @@
       <section class="mb-3">
         <div class="row d-flex justify-content-center">
           <div class="col-lg-8">
-            <p>
+            <p class="text-white">
               "Mimpi Besar Berawal Dari Satu Langkah Kecil."
             </p>
           </div>

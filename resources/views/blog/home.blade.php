@@ -38,7 +38,7 @@
                         <p class="card-text">
                             {{ $post->description}}
                         </p>
-                        <a href="" class="btn btn-primary">
+                        <a href="" class="btn btn-info">
                             {{ trans('blog.button.read_more.value') }}
                         </a>
                     </div>
