@@ -12,7 +12,7 @@
    <!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="{{ asset('vendor2/images/icons/favicon.ico')}}"/>
     <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="{{ asset('vendor2/bootstrap/css/bootstrap.min.css')}}">
+        {{-- <link rel="stylesheet" type="text/css" href="{{ asset('vendor2/bootstrap/css/bootstrap.min.css')}}"> --}}
     <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="{{ asset('vendor2/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
     <!--===============================================================================================-->
@@ -77,10 +77,10 @@
     <!--===============================================================================================-->
         <script src="{{ asset('vendor2/select2/select2.min.js')}}"></script>
     <!--===============================================================================================-->
-        <script src="{{ asset('vendor2/daterangepicker/moment.min.js')}}"></script>
-        <script src="vendor2/daterangepicker/daterangepicker.js"></script>
+        {{-- <script src="{{ asset('vendor2/daterangepicker/moment.min.js')}}"></script> --}}
+        {{-- <script src="{{ asset('vendor2/daterangepicker/daterangepicker.js')}}"></script> --}}
     <!--===============================================================================================-->
-        <script src="{{ asset('vendor2/countdowntime/countdowntime.js')}}"></script>
+        {{-- <script src="{{ asset('vendor2/countdowntime/countdowntime.js')}}"></script> --}}
     <!--===============================================================================================-->
         <script src="{{ asset('vendor2/js/main.js')}}"></script>
 </body>

@@ -5,6 +5,7 @@ language : Indonesia
 return [
     'title' => [
         'home' => "Beranda",
+        'article' => "Artikel",
         'search' => "Cari: :keyword",
         'categories' => "Kategori",
         'category' => "Category: :title",

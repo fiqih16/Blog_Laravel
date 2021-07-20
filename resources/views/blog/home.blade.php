@@ -1,14 +1,17 @@
 @extends('layouts.blog')
 
 @section('title')
-    {{ trans('blog.title.home')}}
+    {{ trans('blog.title.article')}}
 @endsection
 
+@include('layouts._blog._header')
+
 @section('content')
+
     <!-- page title -->
-<h2 class="my-3">
-    {{ trans('blog.title.home')}}
- </h2>
+    <h2 class="my-3">
+        {{ trans('blog.title.article')}}
+    </h2>
  <!-- Breadcrumbs:start -->
         {{ Breadcrumbs::render('blog_home')}}
  <!-- Breadcrumbs:end -->

@@ -25,6 +25,16 @@
     .footer-color {
     background-color: #004d66;
     }
+    .carousel-item {
+    height: 100vh;
+    widows: 100px;
+    min-height: 350px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    }
     </style>
 </head>
 
