@@ -17,6 +17,13 @@ Breadcrumbs::for('blog_categories', function ($trail) {
     $trail->push('Categories', route('blog.categories'));
 });
 
+// Blog > Categories > [Title]
+Breadcrumbs::for('blog_posts_category', function ($trail, $title) {
+    $trail->parent('blog');
+    $trail->push('Categories', route('blog.categories'));
+    $trail->push($title, '#');
+});
+
 // Blog > Tags
 Breadcrumbs::for('blog_tags', function ($trail) {
     $trail->parent('blog');

@@ -10,7 +10,7 @@
    {{-- <link rel="stylesheet" href="{{ asset('vendor/my-auth/css/auth.css')}}"> --}}
 
    <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="{{ asset('vendor2/images/icons/favicon.ico')}}"/>
+	<link rel="icon" type="image/png" href="{{ asset('vendor2/images/icons/favicon2.png')}}"/>
     <!--===============================================================================================-->
         {{-- <link rel="stylesheet" type="text/css" href="{{ asset('vendor2/bootstrap/css/bootstrap.min.css')}}"> --}}
     <!--===============================================================================================-->
