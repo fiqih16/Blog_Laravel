@@ -11,6 +11,12 @@ Breadcrumbs::for('blog_home', function ($trail) {
     $trail->push('Home', route('blog.home'));
 });
 
+// Blog > Posts > [Title]
+Breadcrumbs::for('blog_post', function ($trail, $title) {
+    $trail->parent('blog');
+    $trail->push($title, '#');
+});
+
 // Blog > Categories
 Breadcrumbs::for('blog_categories', function ($trail) {
     $trail->parent('blog');

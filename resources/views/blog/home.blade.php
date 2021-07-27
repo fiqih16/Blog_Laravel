@@ -41,7 +41,7 @@
                         <p class="card-text">
                             {{ $post->description}}
                         </p>
-                        <a href="" class="btn btn-info">
+                        <a href="{{ route('blog.posts.detail',['slug' => $post->slug])}}" class="btn btn-info">
                             {{ trans('blog.button.read_more.value') }}
                         </a>
                     </div>
